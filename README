@@ -1,0 +1,16 @@
+gomoku
+======
+
+Gomoku game implementation
+
+
+Usage
+-----
+
+	gomoku
+
+
+Installation
+------------
+
+	make && make install
