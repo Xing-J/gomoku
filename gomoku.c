@@ -27,7 +27,7 @@ static inline void cleanup(void);
 static size_t consecutive(unsigned char *, enum direction);
 static unsigned char *neighbor(unsigned char *, enum direction);
 static void printt(WINDOW *);
-static inline void setup(void);
+static inline int setup(void);
 
 static const size_t width = 19;
 static const size_t height = width;
@@ -86,8 +86,11 @@ printt(WINDOW *w)
 static inline int
 setup(void)
 {
-	if (!initscr())
+	if (!initscr()) {
+		fprintf(stderr, "Cannot create initial screen\n");
 		goto err;
+	}
+
 	raw();
 	cbreak();
 	noecho();
@@ -95,8 +98,11 @@ setup(void)
 	clear();
 
 	if (!(bor = newwin(height + 2, width + 2, 0, 0)) ||
-		!(win = newwin(height, width, 1, 1)))
+		!(win = newwin(height, width, 1, 1))) {
+		endwin();
+		fprintf(stderr, "Cannot create nested window\n");
 		goto err;
+	}
 
 	wborder(bor, '|', '|', '-', '-', '+', '+', '+', '+');
 	refresh();
@@ -121,7 +127,8 @@ main(int argc, char **argv)
 	enum cells p = P1;
 	char *c;
 
-	setup();
+	if (setup() < 0)
+		return -1;
 
 	do {
 		printt(win);
