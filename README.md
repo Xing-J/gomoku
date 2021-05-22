@@ -19,3 +19,7 @@ See included makefile for details.
 ### Windows
 
 WIP
+
+### Mac OSX
+
+WIP
