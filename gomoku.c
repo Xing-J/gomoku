@@ -18,21 +18,20 @@
 
 #include <ncurses.h>
 
-enum cells { NONE, P1, P2, TOGGLE };
+#define WIDTH 19
+#define HEIGHT WIDTH
+#define SIZE HEIGHT * WIDTH
+
+enum cells { _, P1, P2, TOGGLE };
 
 enum direction { N, NE, E, SE, S, SW, W, NW, neighbors };
 
 static inline void cleanup(void);
 static size_t consecutive(unsigned char *, enum direction);
 static unsigned char *neighbor(unsigned char *, enum direction);
-static void printt(WINDOW *);
 static inline int setup(void);
 
-static const size_t width = 19;
-static const size_t height = width;
-static const size_t size = height * width;
-
-static unsigned char table[size];
+static unsigned char table[SIZE];
 static WINDOW *win, *bor;
 
 static size_t
@@ -49,42 +48,31 @@ neighbor(unsigned char *c, enum direction d)
 
 	switch (d) {
 	case N:
-		return n >= width ? c - width : NULL;
+		return n >= WIDTH ? c - WIDTH : NULL;
 	case NE:
-		return n >= width && n % width < width - 1 ? ++c - width : NULL;
+		return n >= WIDTH && n % WIDTH < WIDTH - 1 ? ++c - WIDTH : NULL;
 	case E:
-		return n % width < width - 1 ? ++c : NULL;
+		return n % WIDTH < WIDTH - 1 ? ++c : NULL;
 	case SE:
-		return n < size - width && n % width < width - 1 ? ++c + width : NULL;
+		return n < SIZE - WIDTH && n % WIDTH < WIDTH - 1 ? ++c + WIDTH : NULL;
 	case S:
-		return n < size - width ? c + width : NULL;
+		return n < SIZE - WIDTH ? c + WIDTH : NULL;
 	case SW:
-		return n < size - width && n % width ? --c + width : NULL;
+		return n < SIZE - WIDTH && n % WIDTH ? --c + WIDTH : NULL;
 	case W:
-		return n % width ? --c : NULL;
+		return n % WIDTH ? --c : NULL;
 	case NW:
-		return n >= width && n % width ? --c - width : NULL;
+		return n >= WIDTH && n % WIDTH ? --c - WIDTH : NULL;
 	default:
 		return NULL;
 	}
 }
 
-static void
-printt(WINDOW *w)
-{
-	static const char i[] = { [NONE] = '.', 'X', 'O' };
-	unsigned char *c = table, *e = c + size, b[] = { 0, '\n' };
-
-	while (c < e)
-		mvwaddch(w, (c - table) / width, (c - table) % width, i[*c++]);
-
-	refresh();
-	wrefresh(w);
-}
-
 static inline int
 setup(void)
 {
+	unsigned char *c, *e;
+
 	if (!initscr()) {
 		fprintf(stderr, "Cannot create initial screen\n");
 		goto err;
@@ -96,8 +84,8 @@ setup(void)
 	keypad(stdscr, TRUE);
 	clear();
 
-	if (!(bor = newwin(height + 2, width + 2, 0, 0)) ||
-		!(win = newwin(height, width, 1, 1))) {
+	if (!(bor = newwin(HEIGHT + 2, WIDTH + 2, 0, 0)) ||
+		!(win = newwin(HEIGHT, WIDTH, 1, 1))) {
 		endwin();
 		fprintf(stderr, "Cannot create nested window\n");
 		goto err;
@@ -106,6 +94,9 @@ setup(void)
 	wborder(bor, '|', '|', '-', '-', '+', '+', '+', '+');
 	refresh();
 	wrefresh(bor);
+
+	for (e = (c = table) + SIZE; c < e; c++)
+		mvwaddch(win, (c - table) / WIDTH, (c - table) % WIDTH, '.');
 
 	return 0;
 err:	return -1;
@@ -122,6 +113,8 @@ cleanup(void)
 int
 main(int argc, char **argv)
 {
+	static const char i[] = { [P1] = 'X', 'O' };
+
 	size_t x = 0, y = 0;
 	enum cells p = P2;
 	char *c;
@@ -130,34 +123,32 @@ main(int argc, char **argv)
 		return -1;
 
 	do {
-		printt(win);
-
 		wmove(win, y, x);
 input:		wrefresh(win);
 
 		switch (getch()) {
 		case 'k':
 		case KEY_UP:
-			wmove(win, y > 0 ? --y : (y = height - 1), x);
+			wmove(win, y > 0 ? --y : (y = HEIGHT - 1), x);
 			goto input;
 		case 'j':
 		case KEY_DOWN:
-			wmove(win, y < height - 1 ? ++y : (y = 0), x);
+			wmove(win, y < HEIGHT - 1 ? ++y : (y = 0), x);
 			goto input;
 		case 'h':
 		case KEY_LEFT:
-			wmove(win, y, x > 0 ? --x : (x = width - 1));
+			wmove(win, y, x > 0 ? --x : (x = WIDTH - 1));
 			goto input;
 		case 'l':
 		case KEY_RIGHT:
-			wmove(win, y, x < width - 1 ? ++x : (x = 0));
+			wmove(win, y, x < WIDTH - 1 ? ++x : (x = 0));
 			goto input;
 		case 'q':
 			goto exit;
 		case ' ':
-			if (!(c = table + y * width + x) || *c)
+			if (!(c = table + y * WIDTH + x) || *c)
 				goto input;
-			*c = (p ^= TOGGLE);
+			waddch(win, i[(*c = (p ^= TOGGLE))]);
 		default:
 			break;
 		}
@@ -169,8 +160,8 @@ input:		wrefresh(win);
 		&& consecutive(c, N) + consecutive(c, S) + 1 < 5
 	);
 
-	printt(win);
-	mvprintw(height + 2, width > 17 ? (width - 17) / 2 + 1 : 0,
+	wrefresh(win);
+	mvprintw(HEIGHT + 2, WIDTH > 17 ? (WIDTH - 17) / 2 + 1 : 0,
 		"> PLAYER %d WINS <\n", p);
 	getch();
 
