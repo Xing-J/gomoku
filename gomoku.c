@@ -19,19 +19,22 @@
 #include <err.h>
 #include <ncurses.h>
 
-enum cells { NONE, P1, P2, START = P2, TOGGLE };
+enum cells { NONE, P1, P2, TOGGLE };
 
 enum direction { N, NE, E, SE, S, SW, W, NW, neighbors };
 
+static inline void cleanup(void);
 static size_t consecutive(unsigned char *, enum direction);
 static unsigned char *neighbor(unsigned char *, enum direction);
 static void printt(WINDOW *);
+static inline void setup(void);
 
 static const size_t width = 19;
 static const size_t height = width;
 static const size_t size = height * width;
 
 static unsigned char table[size];
+static WINDOW *win, *bor;
 
 static size_t
 consecutive(unsigned char *c, enum direction d)
@@ -44,6 +47,7 @@ static unsigned char *
 neighbor(unsigned char *c, enum direction d)
 {
 	size_t n = c - table;
+
 	switch (d) {
 	case N:
 		return n >= width ? c - width : NULL;
@@ -71,22 +75,19 @@ printt(WINDOW *w)
 {
 	static const char i[] = { [NONE] = '.', 'X', 'O' };
 	unsigned char *c = table, *e = c + size, b[] = { 0, '\n' };
+
 	while (c < e)
 		mvwaddch(w, (c - table) / width, (c - table) % width, i[*c++]);
+
 	refresh();
 	wrefresh(w);
 }
 
-int
-main(int argc, char **argv)
+static inline int
+setup(void)
 {
-	enum cells p = START;
-	size_t x = 0, y = 0;
-	WINDOW *win, *bor;
-	char *c;
-
 	if (!initscr())
-		err(1, "initscr");
+		goto err;
 	raw();
 	cbreak();
 	noecho();
@@ -95,13 +96,36 @@ main(int argc, char **argv)
 
 	if (!(bor = newwin(height + 2, width + 2, 0, 0)) ||
 		!(win = newwin(height, width, 1, 1)))
-		err(1, "newwin");
+		goto err;
+
 	wborder(bor, '|', '|', '-', '-', '+', '+', '+', '+');
 	refresh();
 	wrefresh(bor);
 
+	return 0;
+err:	return -1;
+}
+
+static inline void
+cleanup(void)
+{
+	delwin(bor);
+	delwin(win);
+	endwin();
+}
+
+int
+main(int argc, char **argv)
+{
+	size_t x = 0, y = 0;
+	enum cells p = P1;
+	char *c;
+
+	setup();
+
 	do {
 		printt(win);
+
 		wmove(win, y, x);
 input:		wrefresh(win);
 
@@ -127,7 +151,8 @@ input:		wrefresh(win);
 		case ' ':
 			if (!(c = table + y * width + x) || *c)
 				goto input;
-			*c = (p ^= TOGGLE);
+			*c = p;
+			p ^= TOGGLE;
 		default:
 			break;
 		}
@@ -143,7 +168,6 @@ input:		wrefresh(win);
 	mvprintw(height + 2, width > 17 ? (width - 17) / 2 + 1 : 0,
 		"> PLAYER %d WINS <\n", p);
 	getch();
-exit:	delwin(bor);
-	delwin(win);
-	endwin();
+
+exit:	cleanup();
 }
