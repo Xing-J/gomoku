@@ -6,7 +6,7 @@ PREFIX=/usr/local
 MANPREFIX=${PREFIX}/share/man
 
 BIN=${NAME}
-MAN1=${NAME:=.1}
+MAN6=${NAME:=.6}
 
 OBJS=${NAME:=.o}
 
@@ -21,12 +21,12 @@ install: all
 	mkdir -p ${PREFIX}/bin
 	cp -f ${BIN} ${PREFIX}/bin
 	chmod 755 ${PREFIX}/bin/${BIN}
-	mkdir -p ${MANPREFIX}/man1
-	cp -f ${MAN1} ${MANPREFIX}/man1
-	chmod 644 ${MANPREFIX}/man1/${MAN1}
+	mkdir -p ${MANPREFIX}/man6
+	cp -f ${MAN6} ${MANPREFIX}/man6
+	chmod 644 ${MANPREFIX}/man6/${MAN6}
 
 uninstall:
-	rm -f ${PREFIX}/bin/${BIN} ${MANPREFIX}/man1/${MAN1}
+	rm -f ${PREFIX}/bin/${BIN} ${MANPREFIX}/man6/${MAN6}
 
 clean:
 	rm -f ${BIN} ${OBJS}
