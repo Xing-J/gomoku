@@ -123,7 +123,7 @@ int
 main(int argc, char **argv)
 {
 	size_t x = 0, y = 0;
-	enum cells p = P1;
+	enum cells p = P2;
 	char *c;
 
 	if (setup() < 0)
@@ -157,8 +157,7 @@ input:		wrefresh(win);
 		case ' ':
 			if (!(c = table + y * width + x) || *c)
 				goto input;
-			*c = p;
-			p ^= TOGGLE;
+			*c = (p ^= TOGGLE);
 		default:
 			break;
 		}
