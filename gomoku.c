@@ -16,7 +16,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <err.h>
 #include <ncurses.h>
 
 enum cells { NONE, P1, P2, TOGGLE };
