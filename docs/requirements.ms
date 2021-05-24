@@ -48,6 +48,7 @@ if a progressive web application with the game logic (neighbor cell calculation,
 Product Functions
 .LP
 The user will be able to play a game of Gomoku with another user sitting at the same computer. The users will take turns playing turns until a winner emerges.
+.\" Sample GUI is in progress, will add in later
 .NH 2
 Intended User
 .LP
@@ -69,3 +70,4 @@ Contstraints
 is designed to run in modern web browsers which support WASM. Browsers which lack support for WASM will not be able to properly run
 .I Gomoku
 as the majority of the game logic is implemented through WASM.
+.\" Document is still WIP
