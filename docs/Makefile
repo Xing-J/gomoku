@@ -2,8 +2,11 @@
 
 .SUFFIXES: .ms .ps .pdf .html
 
-all:
-	@echo 'Run make against a groff document'
+DOCS=requirements.pdf requirements.html
+
+all: ${DOCS}
+
+${DOCS}:
 
 .ms.ps:
 	groff -ms $< > $@
@@ -15,6 +18,6 @@ all:
 	ps2pdf $<
 
 clean:
-	rm -f *.pdf *.ps *.html
+	rm -f *.ps *.pdf *.html
 
 .PHONY: all clean
