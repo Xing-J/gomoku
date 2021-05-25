@@ -10,6 +10,7 @@ GOMOKU PROJECT REQUIREMENTS
 Benjamin I. Raskin, Student No. 180312330
 Xing Jia, Student No. 180164170
 Chen Jin, Student No. 170631720
+Huiqiao Yang, Student No.186803710
 .AI
 Wilfrid Laurier University
 .NH 1
