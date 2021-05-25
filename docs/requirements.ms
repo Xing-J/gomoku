@@ -8,14 +8,17 @@ GOMOKU PROJECT REQUIREMENTS
 .AU
 .\" Add your names here
 Benjamin I. Raskin, Student No. 180312330
-Xing Jia, Student No. 180164170
-Chen Jin, Student No. 170631720
-Huiqiao Yang, Student No.186803710
-Yongtai Yang, Student No. 190624980
+Xing Jia,           Student No. 180164170
+Chen Jin,           Student No. 170631720
+Huiqiao Yang,       Student No. 186803710
+Yongtai Yang,       Student No. 190624980
+Zehao Liu,          Student No. 193074000
 .AI
 Wilfrid Laurier University
 .NH 1
 Introduction
+.LP
+Gomoku is a web-based strategy board game played between two people. The purpose of this game simulation is to practice our group working ability and learn new components through the work. It is a strategy game which is easy to understand in game logic so that people at any age are suitable to play this game. People will train their logical thinking and have fun in this game.
 .NH 2
 Project Summary
 .LP
