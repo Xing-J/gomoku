@@ -30,6 +30,8 @@ Scope and Business Model
 .NH 3
 Scope
 .LP
+Gomoku is web application which allows for users to play Gomoku against other players locally, or against AI. The goal is to create a no-frills, user friendly and accessible web application for both casual Gomoku players as well as enthusiasts. 
+.LP
 This document covers all of the functional features of
 .I Gomoku
 and the basic plans for the process of implementation and non-functional features of the project.
