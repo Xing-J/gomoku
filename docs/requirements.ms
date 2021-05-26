@@ -7,9 +7,9 @@
 GOMOKU PROJECT REQUIREMENTS
 .AU
 .\" Add your names here
-Benjamin I. Raskin, Student No. 180312330
-Xing Jia, Student No. 180164170
+Benjamin Raskin, Student No. 180312330
 Chen Jin, Student No. 170631720
+Xing Jia, Student No. 180164170
 .AI
 Wilfrid Laurier University
 .NH 1
