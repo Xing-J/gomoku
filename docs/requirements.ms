@@ -19,7 +19,8 @@ Wilfrid Laurier University
 .NH 1
 Introduction
 .LP
-Gomoku is a web-based strategy board game played between two people. The purpose of this game simulation is to practice our group working ability and learn new components through the work. It is a strategy game which is easy to understand in game logic so that people at any age are suitable to play this game. People will train their logical thinking and have fun in this game.
+.I Gomoku
+is a web-based strategy board game played between two people. The purpose of this game simulation is to practice our group working ability and learn new components through the work. It is a strategy game which is easy to understand in game logic so that people at any age are suitable to play this game. People will train their logical thinking and have fun in this game.
 .NH 2
 Project Summary
 .LP
@@ -34,7 +35,7 @@ Scope and Business Model
 .NH 3
 Scope
 .LP
-Gomoku is web application which allows for users to play Gomoku against other players locally, or against AI. The goal is to create a no-frills, user friendly and accessible web application for both casual Gomoku players as well as enthusiasts. 
+Gomoku is web application which allows for users to play Gomoku against other players locally, or against AI (non-MVP goal). The goal is to create a no-frills, user friendly and accessible web application for both casual Gomoku players as well as enthusiasts. 
 .LP
 This document covers all of the functional features of
 .I Gomoku
@@ -51,6 +52,9 @@ Definitions
 .IP \(bu 0.2i
 .B WASM
 Web assembly, a binary format and runtime environment for low level code in the browser
+.IP \(bu 0.2i
+.B MVP
+Minimum Viable Product
 .NH 1
 Overall Description
 .NH 2
@@ -97,3 +101,9 @@ The game logic will be implemented using WASM, that is moves and game state is c
 Portability
 .LP
 Since the game is played in the browser, and WASM is now a browser standard the application is portable through and through on all modern web browsers.
+.NH 1
+Non-MVP Goals
+.LP
+All previous features discussed are part of the project MVP. Other features will be implemented upon completing the MVP before the given deadline, including the following:
+.IP \(bu 0.2i
+An AI oponent to play against the player
