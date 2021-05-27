@@ -4,7 +4,7 @@
 .OH
 .ND
 .TL
-GOMOKU PROJECT REQUIREMENTS
+Gomku Project Requirements
 .AU
 .\" Add your names here
 Benjamin Raskin, Student No. 180312330
@@ -46,13 +46,17 @@ Business Model
 is Free Software licensed under the GPLv3 and protected by Copyleft. Anyone can use
 .I Gomoku
 for any purpose, as well as inspect, edit, and share the source code.
+.NH 2
+Definitions
+.IP \(bu 0.2i
+.B WASM
+Web assembly, a binary format and runtime environment for low level code in the browser
 .NH 1
 Overall Description
 .NH 2
 Product Description
 .LP
-.I
-Gomoku
+.I Gomoku
 if a progressive web application with the game logic (neighbor cell calculation, consecutive simlar cell calculation) being powered by WASM.
 .NH 2
 Product Functions
@@ -65,14 +69,12 @@ Intended User
 The user of
 .I Gomoku
 must fit the following characteristics:
-.RS
 .IP \(bu 0.2i
 The user must be aware of the rules of the game Gomoku
 .IP \(bu 0.2i
 The user must have access to a computer with a graphical shell
 .IP \(bu 0.2i
 The user must have access to a modern web browser with WASM support
-.RE
 .NH 2
 Contstraints
 .LP
@@ -81,3 +83,17 @@ is designed to run in modern web browsers which support WASM. Browsers which lac
 .I Gomoku
 as the majority of the game logic is implemented through WASM.
 .\" Document is still WIP
+.NH 1
+Technical Requirements
+.NH 2
+External Interface
+.LP
+The external interface for the application consists of a single page progressive application. The user is presented with a nineteen by nineteen grid upon which the game is played.
+.NH 2
+Logic and Functions
+.LP
+The game logic will be implemented using WASM, that is moves and game state is calculated via a set of functions exposed to Javascript through WASM bindings. The logic of the game consists of determinig which user's turn it is as well as whether or not a user has won the game. Javascript code will invoke the game logic functions through WASM bindings to progress the game and to draw the corresponding players on the grid.
+.NH 2
+Portability
+.LP
+Since the game is played in the browser, and WASM is now a browser standard the application is portable through and through on all modern web browsers.
