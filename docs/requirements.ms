@@ -7,12 +7,13 @@
 GOMOKU PROJECT REQUIREMENTS
 .AU
 .\" Add your names here
-Benjamin I. Raskin, Student No. 180312330
-Xing Jia,           Student No. 180164170
-Chen Jin,           Student No. 170631720
-Huiqiao Yang,       Student No. 186803710
-Yongtai Yang,       Student No. 190624980
-Zehao Liu,          Student No. 193074000
+Benjamin Raskin, Student No. 180312330
+Chen Jin, Student No. 170631720
+Xing Jia, Student No. 180164170
+Huiqiao Yang, Student No.186803710
+Yongtai Yang, Student No. 190624980
+Mengyuan Liu, Student No.186802750
+Zehao Liu, Student No. 193074000
 .AI
 Wilfrid Laurier University
 .NH 1
@@ -32,6 +33,8 @@ This documents covers all of the project requirements and details that are neede
 Scope and Business Model
 .NH 3
 Scope
+.LP
+Gomoku is web application which allows for users to play Gomoku against other players locally, or against AI. The goal is to create a no-frills, user friendly and accessible web application for both casual Gomoku players as well as enthusiasts. 
 .LP
 This document covers all of the functional features of
 .I Gomoku
