@@ -14,6 +14,7 @@ Huiqiao Yang, Student No.186803710
 Yongtai Yang, Student No. 190624980
 Mengyuan Liu, Student No.186802750
 Zehao Liu, Student No. 193074000
+Ning Nan, Student No.193064800
 .AI
 Wilfrid Laurier University
 .NH 1
