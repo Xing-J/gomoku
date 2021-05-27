@@ -4,17 +4,17 @@
 .OH
 .ND
 .TL
-Gomku Project Requirements
+Gomoku Project Requirements
 .AU
 .\" Add your names here
 Benjamin Raskin, Student No. 180312330
 Chen Jin, Student No. 170631720
 Xing Jia, Student No. 180164170
-Huiqiao Yang, Student No.186803710
+Huiqiao Yang, Student No. 186803710
 Yongtai Yang, Student No. 190624980
-Mengyuan Liu, Student No.186802750
+Mengyuan Liu, Student No. 186802750
 Zehao Liu, Student No. 193074000
-Ning Nan, Student No.193064800
+Ning Nan, Student No. 193064800
 .AI
 Wilfrid Laurier University
 .NH 1
@@ -62,7 +62,7 @@ Overall Description
 Product Description
 .LP
 .I Gomoku
-if a progressive web application with the game logic (neighbor cell calculation, consecutive simlar cell calculation) being powered by WASM.
+if a progressive web application with the game logic (neighbor cell calculation, consecutive similar cell calculation) being powered by WASM.
 .NH 2
 Product Functions
 .LP
@@ -81,7 +81,7 @@ The user must have access to a computer with a graphical shell
 .IP \(bu 0.2i
 The user must have access to a modern web browser with WASM support
 .NH 2
-Contstraints
+Constraints
 .LP
 .I Gomoku
 is designed to run in modern web browsers which support WASM. Browsers which lack support for WASM will not be able to properly run
@@ -97,7 +97,7 @@ The external interface for the application consists of a single page progressive
 .NH 2
 Logic and Functions
 .LP
-The game logic will be implemented using WASM, that is moves and game state is calculated via a set of functions exposed to Javascript through WASM bindings. The logic of the game consists of determinig which user's turn it is as well as whether or not a user has won the game. Javascript code will invoke the game logic functions through WASM bindings to progress the game and to draw the corresponding players on the grid.
+The game logic will be implemented using WASM, that is moves and game state is calculated via a set of functions exposed to Javascript through WASM bindings. The logic of the game consists of determining which user's turn it is as well as whether or not a user has won the game. Javascript code will invoke the game logic functions through WASM bindings to progress the game and to draw the corresponding players on the grid.
 .NH 2
 Portability
 .LP
@@ -105,6 +105,6 @@ Since the game is played in the browser, and WASM is now a browser standard the 
 .NH 1
 Non-MVP Goals
 .LP
-All previous features discussed are part of the project MVP. Other features will be implemented upon completing the MVP before the given deadline, including the following:
+All previous features discussed are part of the project MVP. Other features will be implemented upon completing the MVP before the given deadline, including the following (in priority order):
 .IP \(bu 0.2i
-An AI oponent to play against the player
+An AI opponent to play against the player
