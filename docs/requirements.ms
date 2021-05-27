@@ -13,10 +13,13 @@ Xing Jia, Student No. 180164170
 Huiqiao Yang, Student No.186803710
 Yongtai Yang, Student No. 190624980
 Mengyuan Liu, Student No.186802750
+Zehao Liu, Student No. 193074000
 .AI
 Wilfrid Laurier University
 .NH 1
 Introduction
+.LP
+Gomoku is a web-based strategy board game played between two people. The purpose of this game simulation is to practice our group working ability and learn new components through the work. It is a strategy game which is easy to understand in game logic so that people at any age are suitable to play this game. People will train their logical thinking and have fun in this game.
 .NH 2
 Project Summary
 .LP
