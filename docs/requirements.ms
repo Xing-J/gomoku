@@ -56,6 +56,9 @@ Web assembly, a binary format and runtime environment for low level code in the 
 .IP \(bu 0.2i
 .B MVP
 Minimum Viable Product
+.IP \(bu 0.2i
+.B Gomoku
+The application in development, see introduction for full description
 .NH 1
 Overall Description
 .NH 2
